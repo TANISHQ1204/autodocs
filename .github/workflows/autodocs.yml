@@ -1,0 +1,28 @@
+name: AutoDocs
+
+on:
+  workflow_call:
+    secrets:
+      github-token:
+        required: true
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install AutoDocs
+        run: pip install git+https://github.com/TANISHQ1204/autodocs.git
+
+      - name: Run AutoDocs
+        run: autodocs generate .
+        env:
+          GITHUB_TOKEN: ${{ secrets.github-token }}

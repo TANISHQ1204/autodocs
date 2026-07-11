@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autodocs"
+version = "0.1.0"
+description = "Auto-generates README, API docs, and workflow diagrams on every git push."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+dependencies = [
+    "click>=8.1",
+    "pathspec>=0.12",
+    "anthropic>=0.40.0",
+    "PyYAML>=6.0",
+    "requests>=2.31",
+]
+
+[project.scripts]
+autodocs = "autodocs.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["autodocs*"]
