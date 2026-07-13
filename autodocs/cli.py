@@ -27,10 +27,10 @@ def generate(path):
     diagram_text = build_call_graph_diagram(scan_data["functions"], scan_data["routes"])
 
     sections = {
-        "OVERVIEW": render_overview_section(scan_data),
-        "API": render_api_section(scan_data["routes"]),
-        "ARCHITECTURE": "```mermaid\n" + diagram_text + "\n```",
-    }
+    "OVERVIEW": "## Overview\n\n" + render_overview_section(scan_data),
+    "API": "## API Endpoints\n\n" + render_api_section(scan_data["routes"]),
+    "ARCHITECTURE": "## Architecture\n\n```mermaid\n" + diagram_text + "\n```",
+}
 
     readme_path = Path(path) / "README.md"
     write_sections(readme_path, sections)
